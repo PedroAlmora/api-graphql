@@ -1,0 +1,89 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  """Unique identifier for the user"""
+  id: ID!
+
+  """Username of the user"""
+  username: String!
+
+  """First name of the user"""
+  name: String!
+
+  """Last name of the user"""
+  lastname: String!
+
+  """Email of the user"""
+  email: String!
+
+  """Array of face descriptors"""
+  faceDescriptors: [String!]!
+}
+
+type Query {
+  """Get all users."""
+  users: [User!]!
+
+  "\n      Get a user by ID.\n      Example query:\n      {\n        user(id: \"user-uuid\") {\n          id,\n          username,\n          email\n        }\n      }\n    "
+  user(
+    """
+    ID of the user. Example: "user-uuid"
+    """
+    id: String!
+  ): User!
+}
+
+type Mutation {
+  "\n      Create a new user.\n      Example input:\n      {\n        \"username\": \"johndoe123\",\n        \"name\": \"John\",\n        \"lastname\": \"Doe\",\n        \"email\": \"john.doe@example.com\",\n        \"faceDescriptors\": [\"descriptor1\", \"descriptor2\"]\n      }\n    "
+  createUser(createUserInput: CreateUserInput!): User!
+
+  "\n      Update an existing user.\n      Example input:\n      {\n        \"id\": \"user-uuid\",\n        \"username\": \"newusername\",\n        \"name\": \"New Name\",\n        \"lastname\": \"New Lastname\",\n        \"email\": \"new.email@example.com\",\n        \"faceDescriptors\": [\"newDescriptor1\", \"newDescriptor2\"]\n      }\n    "
+  updateUser(updateUserInput: UpdateUserInput!): User!
+
+  "\n      Delete a user by ID.\n      Example input:\n      {\n        \"id\": \"user-uuid\"\n      }\n    "
+  removeUser(
+    """
+    ID of the user to delete. Example: "user-uuid"
+    """
+    id: String!
+  ): Boolean!
+}
+
+input CreateUserInput {
+  """Username of the new user"""
+  username: String!
+
+  """First name of the new user"""
+  name: String!
+
+  """Last name of the new user"""
+  lastname: String!
+
+  """Email of the new user"""
+  email: String!
+
+  """Array of face descriptors for the new user"""
+  faceDescriptors: [String!]!
+}
+
+input UpdateUserInput {
+  """Username of the new user"""
+  username: String
+
+  """First name of the new user"""
+  name: String
+
+  """Last name of the new user"""
+  lastname: String
+
+  """Email of the new user"""
+  email: String
+
+  """Array of face descriptors for the new user"""
+  faceDescriptors: [String!]
+
+  """ID of the user to update"""
+  id: String!
+}
